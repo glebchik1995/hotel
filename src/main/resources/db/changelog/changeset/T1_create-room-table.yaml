@@ -1,0 +1,101 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_room
+      author: Gleb
+      changes:
+        - createTable:
+            tableName: room
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: state
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: size
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: star
+                  type: INT
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: insert_room
+      author: Gleb
+      changes:
+        - insert:
+            tableName: room
+            columns:
+              - column:
+                  name: state
+                  value: 'OCCUPIED'
+              - column:
+                  name: size
+                  valueNumeric: '1'
+              - column:
+                  name: price
+                  valueNumeric: '1000'
+              - column:
+                  name: star
+                  valueNumeric: '1'
+        - insert:
+            tableName: room
+            columns:
+              - column:
+                  name: state
+                  value: 'FREE'
+              - column:
+                  name: size
+                  valueNumeric: '2'
+              - column:
+                  name: price
+                  valueNumeric: '2000'
+              - column:
+                  name: star
+                  valueNumeric: '2'
+        - insert:
+            tableName: room
+            columns:
+              - column:
+                  name: state
+                  value: 'FREE'
+              - column:
+                  name: size
+                  valueNumeric: '3'
+              - column:
+                  name: price
+                  valueNumeric: '5000'
+              - column:
+                  name: star
+                  valueNumeric: '3'
+
+        - insert:
+            tableName: room
+            columns:
+              - column:
+                  name: state
+                  value: 'FREE'
+              - column:
+                  name: size
+                  valueNumeric: '3'
+              - column:
+                  name: price
+                  valueNumeric: '7000'
+              - column:
+                  name: star
+                  valueNumeric: '4'

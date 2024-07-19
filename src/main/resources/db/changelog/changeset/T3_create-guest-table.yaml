@@ -1,0 +1,63 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_guest
+      author: Gleb
+      changes:
+        - createTable:
+            tableName: guest
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: surname
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: age
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: passport
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: phone
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: insert_guest
+      author: Gleb
+      changes:
+        - insert:
+            tableName: guest
+            columns:
+              - column:
+                  name: name
+                  value: 'Jon'
+              - column:
+                  name: surname
+                  value: 'Jonson'
+              - column:
+                  name: age
+                  valueNumeric: '25'
+              - column:
+                  name: passport
+                  value: 'AB1234567'
+              - column:
+                  name: phone
+                  value: '1234567890'

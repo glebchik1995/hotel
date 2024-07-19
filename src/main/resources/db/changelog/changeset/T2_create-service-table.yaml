@@ -1,0 +1,87 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_service
+      author: Gleb
+      changes:
+        - createTable:
+            tableName: service
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: category
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: available
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: insert_service
+      author: Gleb
+      changes:
+        - insert:
+            tableName: service
+            columns:
+              - column:
+                  name: title
+                  value: 'Breakfast'
+              - column:
+                  name: price
+                  valueNumeric: '250'
+              - column:
+                  name: category
+                  value: 'FOOD'
+              - column:
+                  name: available
+                  valueBoolean: 'true'
+
+        - insert:
+            tableName: service
+            columns:
+              - column:
+                  name: title
+                  value: 'Iron'
+              - column:
+                  name: price
+                  valueNumeric: '300'
+              - column:
+                  name: category
+                  value: 'TECHNIC'
+              - column:
+                  name: available
+                  valueBoolean: 'true'
+
+        - insert:
+            tableName: service
+            columns:
+              - column:
+                  name: title
+                  value: 'Shampoo'
+              - column:
+                  name: price
+                  valueNumeric: '100'
+              - column:
+                  name: category
+                  value: 'BATHROOM_ACCESSORIES'
+              - column:
+                  name: available
+                  valueBoolean: 'true'

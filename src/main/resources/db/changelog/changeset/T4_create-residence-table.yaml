@@ -1,0 +1,69 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_residence_table
+      author: Gleb
+      changes:
+        - createTable:
+            tableName: residence
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: guest_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: room_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: date_checkin
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: date_checkout
+                  type: DATE
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: residence
+            baseColumnNames: guest_id
+            referencedTableName: guest
+            referencedColumnNames: id
+            constraintName: FK_residence_guest
+            onDelete: CASCADE
+        - addForeignKeyConstraint:
+            baseTableName: residence
+            baseColumnNames: room_id
+            referencedTableName: room
+            referencedColumnNames: id
+            constraintName: FK_residence_room
+            onDelete: CASCADE
+
+  - changeSet:
+      id: insert_residence
+      author: Gleb
+      changes:
+        - insert:
+            tableName: residence
+            columns:
+              - column:
+                  name: guest_id
+                  valueNumeric: '1'
+              - column:
+                  name: room_id
+                  valueNumeric: '1'
+              - column:
+                  name: date_checkin
+                  valueDate: '2024-04-26'
+              - column:
+                  name: date_checkout
+                  valueDate: '2024-04-29'

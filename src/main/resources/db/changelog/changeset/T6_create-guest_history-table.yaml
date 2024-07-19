@@ -1,0 +1,52 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_guest_history
+      author: Gleb
+      changes:
+        - createTable:
+            tableName: guest_history
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: room_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: guest_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: guest_history
+            baseColumnNames: room_id
+            referencedTableName: room
+            referencedColumnNames: id
+            constraintName: FK_room_history_room
+        - addForeignKeyConstraint:
+            baseTableName: guest_history
+            baseColumnNames: guest_id
+            referencedTableName: guest
+            referencedColumnNames: id
+            constraintName: FK_guest_history_room
+
+  - changeSet:
+      id: insert_guest_history
+      author: Gleb
+      changes:
+        - insert:
+            tableName: guest_history
+            columns:
+              - column:
+                  name: room_id
+                  valueNumeric: '1'
+              - column:
+                  name: guest_id
+                  valueNumeric: '1'
